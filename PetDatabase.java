@@ -52,6 +52,32 @@ public class PetDatabase {
         System.out.println("+-------------------------+");
         System.out.println(pets.size() + " rows in set.");
     }
+    /* Search by name, print out results */
+    public void searchPetsByName(String nameSearch) {
+        System.out.println("+-------------------------+");
+        System.out.printf("| %-3s | %-10s | %-4s |\n", "ID", "NAME", "AGE");
+        System.out.println("+-------------------------+");
+        for (int i = 0; i < pets.size(); i++) {
+            Pet pet = pets.get(i);
+            if (pet.getName().equalsIgnoreCase(nameSearch)) {
+                System.out.printf("| %-3d | %-10s | %-4d |\n", i, pet.getName(), pet.getAge());
+            }
+        }
+        System.out.println("+-------------------------+");
+    }
+    /* Search by age, print out results */
+    public void searchPetsByAge(int ageSearch) {
+        System.out.println("+-------------------------+");
+        System.out.printf("| %-3s | %-10s | %-4s |\n", "ID", "NAME", "AGE");
+        System.out.println("+-------------------------+");
+        for (int i = 0; i < pets.size(); i++) {
+            Pet pet = pets.get(i);
+            if (pet.getAge() == ageSearch) {
+                System.out.printf("| %-3d | %-10s | %-4d |\n", i, pet.getName(), pet.getAge());
+            }
+        }
+        System.out.println("+-------------------------+");
+    }
     
     /* Interface for database */
     public static void main(String[] args) {
@@ -61,6 +87,8 @@ public class PetDatabase {
             System.out.println("Options:");
             System.out.println("1. Add a pet");
             System.out.println("2. Show all pets");
+            System.out.println("3. Search pets by name");
+            System.out.println("4. Search pets by age");
             System.out.print("Enter your choice: ");
             int choice = scnr.nextInt();
             scnr.nextLine(); 
@@ -76,6 +104,16 @@ public class PetDatabase {
                 case 2:
                     database.showPets();
                     break;  
+                case 3:
+                    System.out.print("Enter name of pet you'd like to search for: ");
+                    String nameSearch = scnr.nextLine();
+                    database.searchPetsByName(nameSearch);
+                    break;
+                case 4:
+                    System.out.print("Enter age of pet you'd like to search for: ");
+                    int ageSearch = scnr.nextInt();
+                    database.searchPetsByAge(ageSearch);
+                    break; 
             }
         }
     }
