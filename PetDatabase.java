@@ -78,6 +78,26 @@ public class PetDatabase {
         }
         System.out.println("+-------------------------+");
     }
+    /* Update pet by searching for ID */
+    public void updatePet(int id, String newName, int newAge) {
+        if (id >= 0 && id < pets.size()) {
+            Pet pet = pets.get(id);
+            pet.setName(newName);
+            pet.setAge(newAge);
+            System.out.println("Pet has been updated");
+        } else {
+            System.out.println("Invalid ID, please retry.");
+        }
+    }
+    /* Remove pet by searching for ID */
+    public void removePet(int id) {
+        if (id >= 0 && id < pets.size()) {
+            pets.remove(id);
+            System.out.println("Pet has been removed.");
+        } else {
+            System.out.println("Invalid ID, please retry.");
+        }
+    }
     
     /* Interface for database */
     public static void main(String[] args) {
@@ -89,6 +109,9 @@ public class PetDatabase {
             System.out.println("2. Show all pets");
             System.out.println("3. Search pets by name");
             System.out.println("4. Search pets by age");
+            System.out.println("5. Update pet");
+            System.out.println("6. Remove pet");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             int choice = scnr.nextInt();
             scnr.nextLine(); 
@@ -114,6 +137,28 @@ public class PetDatabase {
                     int ageSearch = scnr.nextInt();
                     database.searchPetsByAge(ageSearch);
                     break; 
+                case 5:
+                    System.out.print("Enter the ID of the pet to update: ");
+                    int idToUpdate = scnr.nextInt();
+                    scnr.nextLine();
+                    System.out.print("Enter new name: ");
+                    String newName = scnr.nextLine();
+                    System.out.print("Enter new age: ");
+                    int newAge = scnr.nextInt();
+                    database.updatePet(idToUpdate, newName, newAge);
+                    break;
+                case 6:
+                    System.out.print("Enter the ID of the pet to remove: ");
+                    int idToRemove = scnr.nextInt();
+                    database.removePet(idToRemove);
+                    break;
+                case 7:
+                    System.out.println("Goodbye!");
+                    scnr.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid option, please retry.");
+                    break;
             }
         }
     }
