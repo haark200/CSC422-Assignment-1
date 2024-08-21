@@ -93,12 +93,9 @@ public class Main {
     }
 
     /* Database class */
-    public class PetDatabase {
+    class PetDatabase {
         private ArrayList<Pet> pets;
-        public PetDatabase() 
-        {
-            pets = new ArrayList<>();
-        }
+
         /* Add pet to database */
         public void addPet(String name, int age) {
             pets.add(new Pet(name, age));
