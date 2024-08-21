@@ -1,0 +1,7 @@
+max 2
+sam smith
+john 22
+johni 18
+rich 16
+ab1e 13
+nixon 0
